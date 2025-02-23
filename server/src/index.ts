@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Request, Response} from "express";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import morgan from "morgan";
@@ -10,7 +10,7 @@ import taskRoutes from "./routes/taskRoutes";
 import searchRoutes from "./routes/searchRoutes";
  import userRoutes from "./routes/userRoutes";
  import teamRoutes from "./routes/teamRoutes";
-
+ import { PrismaClient } from "@prisma/client";
 /*CONFIGRATION */
 dotenv.config();
 const app = express();
@@ -31,6 +31,8 @@ app.use("/tasks", taskRoutes);
 app.use("/search", searchRoutes);
 app.use("/users", userRoutes);
 app.use("/teams", teamRoutes);
+
+
 /*SERVER */
 const port = Number(process.env.PORT) || 3000;
 app.listen(port, "0.0.0.0",() => {
